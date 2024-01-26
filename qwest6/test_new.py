@@ -17,17 +17,17 @@ if response.status_code == 200:
     if security_input:
         security_input.extract()  # Используйте decompose() вместо extract(), если нужно удалить окончательно
 
-    with open('../qwest5/new.html', 'w', encoding='utf-8') as file:
+    with open('new.html', 'w', encoding='utf-8') as file:
         file_new_content = file.write(soup.prettify())
         file.close()
 
-    with open('../qwest5/new.html', 'r', encoding='utf-8') as file:
+    with open('new.html', 'r', encoding='utf-8') as file:
         file_content1 = file.read()
         file.close()
 
     # print(str(soup))
     # Запись обновленного содержимого soup в файл
-    with open('../qwest5/output_modified.html', 'r', encoding='utf-8') as file:
+    with open('output_modified.html', 'r', encoding='utf-8') as file:
         file_content = file.read()
         file.close()
 
