@@ -47,7 +47,6 @@ if response.status_code == 200:
         file_content1 = file.read()
         file.close()
 
-    # print(str(soup))
     # Запись обновленного содержимого soup в файл
     with open('output_modified.html', 'r', encoding='utf-8') as file:
         file_content = file.read()
@@ -58,12 +57,12 @@ if response.status_code == 200:
     else:
         print("Содержимое переменной soup и содержимое файла output.html различны.")
         # Отправить уведомление по электронной почте
-        subject = 'Уведомление о несоответствии HTML-контента autoplaza51.ru'
+        subject = 'Уведомление: autoplaza51.ru'
         body = f'Содержимое переменной soup и содержимое файла output.html различны.'
         send_email(subject, body)
 else:
     print(f'Ошибка при запросе: {response.status_code}')
     # Отправить уведомление по электронной почте
-    subject = 'Уведомление о несоответствии HTML-контента autoplaza51.ru'
+    subject = 'Уведомление: autoplaza51.ru'
     body = f'Ошибка при запросе: {response.status_code}'
     send_email(subject, body)
