@@ -1,5 +1,27 @@
 import requests
 from bs4 import BeautifulSoup
+import smtplib
+from email.mime.text import MIMEText
+
+def send_email(subject, body):
+    # Your Gmail credentials
+    gmail_user = 'kulikov51@gmail.com'
+    gmail_password = ''
+
+    # Recipient email address
+    to = 'vanaws51@gmail.com'
+
+    # Set up the MIMEText object
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = gmail_user
+    msg['To'] = to
+
+    # Establish a secure connection with the SMTP server
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        server.starttls()
+        server.login(gmail_user, gmail_password)
+        server.sendmail(gmail_user, to, msg.as_string())
 
 # URL сайта для парсинга
 url = 'https://autoplaza51.ru/'
@@ -35,8 +57,13 @@ if response.status_code == 200:
         print("Содержимое переменной soup и содержимое файла output.html идентичны.")
     else:
         print("Содержимое переменной soup и содержимое файла output.html различны.")
-
+        # Send an email notification
+        subject = 'Уведомление о несоответствии HTML-контента autoplaza51.ru'
+        body = f'Содержимое переменной soup и содержимое файла output.html различны.'
+        send_email(subject, body)
 else:
     print(f'Ошибка при запросе: {response.status_code}')
-
-
+    # Send an email notification
+    subject = 'Уведомление о несоответствии HTML-контента autoplaza51.ru'
+    body = f'Ошибка при запросе: {response.status_code}'
+    send_email(subject, body)
