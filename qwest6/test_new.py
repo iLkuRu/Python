@@ -57,13 +57,13 @@ if response.status_code == 200:
         print("Содержимое переменной soup и содержимое файла output.html идентичны.")
     else:
         print("Содержимое переменной soup и содержимое файла output.html различны.")
-        # Send an email notification
+        # Отправить уведомление по электронной почте
         subject = 'Уведомление о несоответствии HTML-контента autoplaza51.ru'
         body = f'Содержимое переменной soup и содержимое файла output.html различны.'
         send_email(subject, body)
 else:
     print(f'Ошибка при запросе: {response.status_code}')
-    # Send an email notification
+    # Отправить уведомление по электронной почте
     subject = 'Уведомление о несоответствии HTML-контента autoplaza51.ru'
     body = f'Ошибка при запросе: {response.status_code}'
     send_email(subject, body)
